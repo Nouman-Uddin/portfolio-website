@@ -12,7 +12,7 @@ export const projects = [
     kind: 'creative',
     title: 'Skincare product brand',
     tagline: 'AI-generated product photography & a full Instagram brand grid',
-    year: '2025',
+    year: '2026',
     role: 'Product concept · Creative direction · Prompt engineering · Edit',
     glimpse: {
       src: '/images/glimpse-skincare.jpg',
@@ -46,7 +46,8 @@ export const projects = [
     },
     video: {
       src: '/video/skincare-ad.mp4',
-      poster: '/images/case-skincare-06.jpg',
+      ratio: 'vertical',
+      poster: '/images/poster-skincare-ad.jpg',
       alt: 'The finished Shué promotional ad',
     },
     gallery: [
@@ -83,7 +84,7 @@ export const projects = [
     kind: 'creative',
     title: 'Property walkthrough',
     tagline: 'A luxury property walkthrough film for Golden Vision Real Estate',
-    year: '2025',
+    year: '2026',
     role: 'Creative direction · AI video generation · Edit',
     glimpse: {
       src: '/images/glimpse-property.jpg',
@@ -101,6 +102,7 @@ export const projects = [
     ],
     video: {
       src: '/video/property-walkthrough.mp4',
+      ratio: 'wide',
       poster: '/images/case-property-hero.jpg',
       alt: 'AI-generated luxury property walkthrough video for Golden Vision Real Estate',
     },
@@ -122,7 +124,7 @@ export const projects = [
     kind: 'creative',
     title: 'Backpack campaign',
     tagline: 'Concept product campaign, directed end to end',
-    year: '2025',
+    year: '2026',
     role: 'Product concept · Creative direction · Prompt engineering · Edit',
     glimpse: {
       src: '/images/glimpse-backpack.jpg',
@@ -140,7 +142,8 @@ export const projects = [
     ],
     video: {
       src: '/video/backpack-ad.mp4',
-      poster: '/images/case-backpack-hero.jpg',
+      ratio: 'vertical',
+      poster: '/images/poster-backpack-ad.jpg',
       alt: 'The finished Japanese backpack campaign film',
     },
     gallery: [
@@ -185,7 +188,7 @@ export const projects = [
     kind: 'technical',
     title: 'Suede Stone Designs Website',
     tagline: 'A marketing site for a hospitality design-build studio',
-    year: '2025',
+    year: '2026',
     role: 'Information architecture · Copy · Build',
     glimpse: {
       src: '/images/glimpse-hospitality.jpg',
@@ -215,7 +218,7 @@ export const projects = [
     kind: 'technical',
     title: 'ScholHub',
     tagline: 'Free, legal access to research papers for students',
-    year: '2025',
+    year: '2026',
     role: 'Concept · Build · Deployment',
     glimpse: {
       src: '/images/glimpse-scholhub.jpg',

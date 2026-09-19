@@ -26,6 +26,14 @@ const heroShape = {
 }
 
 // Interiors want a landscape frame; product and fashion frames want a portrait one.
+// Social cuts are shot 9:16. Forcing them into a 16:9 plate crops the product
+// out of its own advert, so each film declares its shape and gets a frame that
+// fits it.
+const videoShape = {
+  vertical: 'mx-auto aspect-[9/16] w-full max-w-[22rem]',
+  wide: 'aspect-video w-full',
+}
+
 const galleryLayout = {
   portrait: { grid: 'grid-cols-2 md:grid-cols-3', aspect: 'aspect-[4/5]' },
   landscape: { grid: 'grid-cols-1 sm:grid-cols-2', aspect: 'aspect-[3/2]' },
@@ -228,7 +236,9 @@ export default function CaseStudy() {
                 src={project.video.src}
                 poster={project.video.poster}
                 alt={project.video.alt}
-                className="aspect-video w-full rounded-[var(--radius-md)] border border-border"
+                className={`rounded-[var(--radius-md)] border border-border ${
+                  videoShape[project.video.ratio] ?? videoShape.wide
+                }`}
               />
             </Reveal>
           ) : null}

@@ -36,7 +36,7 @@ export function MediaVideo({ src, poster, alt, className = '' }) {
   const [failed, setFailed] = useState(!src)
 
   return (
-    <div className={`relative overflow-hidden bg-border/50 ${className}`}>
+    <div className={`relative overflow-hidden bg-primary ${className}`}>
       {failed ? (
         <Placeholder alt={alt} src={src} icon={Film} sizeHint="Video" />
       ) : (
@@ -48,7 +48,7 @@ export function MediaVideo({ src, poster, alt, className = '' }) {
           preload="metadata"
           aria-label={alt}
           onError={() => setFailed(true)}
-          className="h-full w-full object-cover"
+          className="h-full w-full object-contain"
         >
           {alt}
         </video>
