@@ -38,9 +38,10 @@ jobs:
         # unless the 404 page is the app itself.
         run: cp dist/index.html dist/404.html
 
+      # Pages itself has to be switched on once by hand
+      # (Settings -> Pages -> Source: GitHub Actions); the workflow token
+      # cannot enable it, so this step only reads the configuration.
       - uses: actions/configure-pages@v5
-        with:
-          enablement: true
 
       - uses: actions/upload-pages-artifact@v3
         with:
