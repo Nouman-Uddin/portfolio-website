@@ -51,7 +51,13 @@ export default function CaseStudy() {
   const liveUrl = project.liveKey ? links[project.liveKey] : null
   const heroClass = heroShape[project.hero.ratio] ?? 'aspect-[16/9]'
   const layout = galleryLayout[project.galleryRatio ?? 'portrait']
-  const viewerItems = [...(project.gallery ?? []), ...(project.referenceSheets ?? [])]
+  const viewerItems = [
+    ...(project.gallery ?? []),
+    ...(project.feature ? [project.feature] : []),
+    ...(project.referenceSheets ?? []),
+  ]
+  const featureIndex = project.gallery?.length ?? 0
+  const sheetsFrom = featureIndex + (project.feature ? 1 : 0)
   const { lightbox, open } = useLightbox(viewerItems)
 
   return (
@@ -278,6 +284,37 @@ export default function CaseStudy() {
         </Section>
       ) : null}
 
+      {/* ---------- The one deliverable worth showing whole ---------- */}
+      {project.feature ? (
+        <Section className="!pt-4 md:!pt-6">
+          <Reveal>
+            <div className="flex flex-col gap-3 md:flex-row md:items-baseline md:justify-between">
+              <h2 className="font-serif text-[1.75rem] md:text-[2.2rem]">{project.feature.label}</h2>
+              <p className="max-w-[48ch] text-[0.88rem] leading-relaxed text-text/65">
+                {project.feature.caption}
+              </p>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => open(featureIndex)}
+              aria-label={`View larger: ${project.feature.alt}`}
+              className="mx-auto mt-8 block w-full max-w-[32rem] cursor-zoom-in rounded-[var(--radius-md)] border border-border bg-bg transition-all duration-200 hover:border-accent/50 hover:shadow-[0_24px_50px_-30px_rgba(43,36,32,0.6)]"
+            >
+              <Media
+                src={project.feature.src}
+                alt={project.feature.alt}
+                sizeHint="Layout"
+                fit="contain"
+                className={`w-full rounded-[var(--radius-md)] ${
+                  sheetAspect[project.feature.ratio] ?? sheetAspect['3/4']
+                }`}
+              />
+            </button>
+          </Reveal>
+        </Section>
+      ) : null}
+
       {/* ---------- Reference sheets ---------- */}
       {project.referenceSheets ? (
         <div className="border-y border-border bg-bg-deep">
@@ -301,7 +338,7 @@ export default function CaseStudy() {
                   </div>
                   <button
                     type="button"
-                    onClick={() => open((project.gallery?.length ?? 0) + index)}
+                    onClick={() => open(sheetsFrom + index)}
                     aria-label={`View larger: ${sheet.alt}`}
                     className="mt-5 block w-full cursor-zoom-in rounded-[var(--radius-sm)] border border-border bg-bg transition-all duration-200 hover:border-accent/50 hover:shadow-[0_22px_46px_-30px_rgba(43,36,32,0.6)]"
                   >

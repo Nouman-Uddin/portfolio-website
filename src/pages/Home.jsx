@@ -78,7 +78,7 @@ export default function Home() {
         />
 
         <div className="relative mx-auto w-full max-w-6xl px-5 py-28 sm:px-8 md:py-36">
-          <Reveal as="p" className="text-[0.63rem] uppercase tracking-[0.24em] text-accent-plum">
+          <Reveal as="p" className="text-[0.78rem] uppercase tracking-[0.24em] text-accent-plum md:text-[0.88rem]">
             AI Creative Technologist
           </Reveal>
 

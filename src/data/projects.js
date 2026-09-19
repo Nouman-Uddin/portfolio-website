@@ -58,6 +58,14 @@ export const projects = [
       { src: '/images/case-skincare-05.jpg', alt: 'Brand grid frame — the bottle upright on stone beneath the branch' },
       { src: '/images/case-skincare-06.jpg', alt: 'Brand grid frame — the campaign shot, bottle centred against the branch' },
     ],
+    feature: {
+      src: '/images/case-skincare-grid.jpg',
+      ratio: '3/4',
+      label: 'The brand grid',
+      caption:
+        'The nine-tile Instagram feed the whole campaign was built toward — wordmark holding the corner, eight frames chosen so the grid still reads as one object at thumbnail size.',
+      alt: 'The Shué Instagram brand grid — a nine-tile layout, wordmark top left and eight campaign frames around it',
+    },
     referenceSheets: [
       {
         src: '/images/case-skincare-ref-product.jpg',
