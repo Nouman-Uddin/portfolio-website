@@ -1,0 +1,130 @@
+@import "tailwindcss";
+
+@theme {
+  /* ---- Palette (edit here; everything downstream follows) ---- */
+  --color-bg: #f7f3ec;            /* warm cream background */
+  --color-text: #2b2420;          /* warm charcoal, primary text */
+  --color-primary: #4a2545;       /* deep plum — headings, emphasis */
+  --color-accent: #a9793e;        /* warm bronze — borders, rules, large display text */
+  --color-accent-deep: #8a5f2c;   /* darker bronze — bronze *text* and filled buttons (AA on cream/white) */
+  --color-accent-light: #c08a4e;  /* lighter gold-bronze — secondary highlights, non-text */
+  --color-surface: #ffffff;       /* card backgrounds */
+  --color-border: #e4ddd0;        /* hairline borders */
+
+  /* ---- Type ---- */
+  --font-serif: "Fraunces", ui-serif, Georgia, "Times New Roman", serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* ---- Motion ---- */
+  --ease-out-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-serif);
+    color: var(--color-primary);
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+
+  ::selection {
+    background-color: var(--color-accent);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent-deep);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  /* Scroll reveal — opt out entirely under reduced motion (see below) */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 700ms var(--ease-out-soft),
+      transform 700ms var(--ease-out-soft);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  .reveal[data-visible="true"] {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Each route fades up on arrival, so navigation feels composed rather than abrupt. */
+  .page-enter {
+    animation: page-in 420ms var(--ease-out-soft) both;
+  }
+
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 100% 1px;
+    transition: background-size 250ms var(--ease-out-soft);
+  }
+
+  .link-underline:hover {
+    background-size: 0% 1px;
+  }
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes lightbox-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal,
+  .page-enter {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    animation: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
