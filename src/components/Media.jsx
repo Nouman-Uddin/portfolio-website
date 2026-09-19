@@ -31,7 +31,14 @@ export function Media({ src, alt, className = '', imgClassName = '', sizeHint, f
   )
 }
 
-/** A video with the same graceful-degradation behaviour. */
+/**
+ * A video with the same graceful-degradation behaviour.
+ *
+ * `controlsList="nodownload"` and blocking the context menu take away the
+ * one-click ways of saving the file. Worth being clear-eyed about it: this is
+ * friction, not protection. The file is still a plain URL under /video, and
+ * anything that plays has already been sent to the viewer's machine.
+ */
 export function MediaVideo({ src, poster, alt, className = '' }) {
   const [failed, setFailed] = useState(!src)
 
@@ -44,9 +51,12 @@ export function MediaVideo({ src, poster, alt, className = '' }) {
           src={src}
           poster={poster}
           controls
+          controlsList="nodownload noplaybackrate"
+          disablePictureInPicture
           playsInline
           preload="metadata"
           aria-label={alt}
+          onContextMenu={(event) => event.preventDefault()}
           onError={() => setFailed(true)}
           className="h-full w-full object-contain"
         >
