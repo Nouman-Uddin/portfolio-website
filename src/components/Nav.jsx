@@ -13,6 +13,7 @@ export default function Nav() {
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [mobileWorkOpen, setMobileWorkOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
   const dropdownRef = useRef(null)
   const { pathname } = useLocation()
   // Pointer devices open the menu on hover, so a click there should only ever
@@ -47,20 +48,45 @@ export default function Nav() {
     }
   }, [])
 
+  // Once the page has moved the bar takes on glass and a shadow — depth,
+  // without changing what the bar is.
+  useEffect(() => {
+    let frame = null
+    const measure = () => {
+      frame = null
+      setScrolled(window.scrollY > 12)
+    }
+    const onScroll = () => {
+      if (frame === null) frame = window.requestAnimationFrame(measure)
+    }
+    measure()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      if (frame !== null) window.cancelAnimationFrame(frame)
+    }
+  }, [])
+
   const isWorkPath = pathname.startsWith('/work/')
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border/80 bg-bg/85 backdrop-blur-md">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-6 px-5 sm:px-8 md:h-20">
+    <header
+      className={`sticky top-0 z-50 border-b border-accent/30 transition-all duration-300 ${
+        scrolled
+          ? 'bg-primary/90 shadow-[0_10px_30px_-18px_rgba(24,12,22,0.85)] backdrop-blur-xl'
+          : 'bg-primary'
+      }`}
+    >
+      <div className="mx-auto flex h-[4.5rem] max-w-6xl items-center justify-between gap-6 px-5 sm:px-8 md:h-[5.25rem]">
         <Link
           to="/"
-          className="group flex flex-col leading-tight"
           aria-label="Mohammad Nouman-Ud-din — home"
+          className="flex flex-col justify-center rounded-full bg-bg px-5 py-2 leading-tight transition-colors duration-200 hover:bg-white sm:px-6"
         >
-          <span className="font-serif text-[1.05rem] text-primary transition-colors duration-200 group-hover:text-accent-deep md:text-[1.15rem]">
+          <span className="font-serif text-[0.95rem] text-primary md:text-[1.05rem]">
             Mohammad Nouman-Ud-din
           </span>
-          <span className="text-[0.62rem] uppercase tracking-[0.22em] text-text/55 md:text-[0.65rem]">
+          <span className="text-[0.55rem] uppercase tracking-[0.22em] text-primary/65 md:text-[0.6rem]">
             AI Creative Technologist
           </span>
         </Link>
@@ -71,7 +97,7 @@ export default function Nav() {
 
           <Link
             to="/#about"
-            className="text-sm tracking-wide text-text transition-colors duration-200 hover:text-accent-deep"
+            className="border-b-[1.5px] border-transparent pb-1 text-sm tracking-wide text-bg/90 transition-colors duration-150 hover:text-accent-plum"
           >
             About
           </Link>
@@ -87,8 +113,8 @@ export default function Nav() {
               aria-expanded={dropdownOpen}
               aria-haspopup="true"
               onClick={() => setDropdownOpen((open) => (canHover ? true : !open))}
-              className={`flex items-center gap-1.5 text-sm tracking-wide transition-colors duration-200 hover:text-accent-deep ${
-                isWorkPath ? 'text-accent-deep' : 'text-text'
+              className={`flex items-center gap-1.5 border-b-[1.5px] pb-1 text-sm tracking-wide transition-colors duration-150 hover:text-accent-plum ${
+                isWorkPath ? 'border-accent text-accent-plum' : 'border-transparent text-bg/90'
               }`}
             >
               Portfolio
@@ -108,7 +134,7 @@ export default function Nav() {
                   : 'invisible -translate-y-1 opacity-0'
               }`}
             >
-              <div className="grid grid-cols-2 gap-8 border border-border bg-surface p-7 shadow-[0_18px_50px_-24px_rgba(43,36,32,0.35)]">
+              <div className="grid grid-cols-2 gap-8 rounded-[var(--radius-md)] border border-border bg-surface p-7 shadow-[0_24px_60px_-28px_rgba(43,36,32,0.45)]">
                 {columns.map(({ key, items }) => (
                   <div key={key}>
                     <p className="mb-3 border-b border-border pb-2 text-[0.63rem] uppercase tracking-[0.2em] text-accent-deep">
@@ -120,7 +146,7 @@ export default function Nav() {
                           <Link
                             to={`/work/${project.slug}`}
                             tabIndex={dropdownOpen ? 0 : -1}
-                            className="block rounded-sm px-2 py-1.5 text-sm text-text transition-colors duration-200 hover:bg-bg hover:text-accent-deep"
+                            className="block rounded-md px-2 py-1.5 text-sm text-text transition-colors duration-200 hover:bg-bg hover:text-accent-deep"
                           >
                             {project.title}
                           </Link>
@@ -143,7 +169,7 @@ export default function Nav() {
           aria-controls="mobile-menu"
           aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
           onClick={() => setMobileOpen((open) => !open)}
-          className="-mr-2 p-2 text-primary md:hidden"
+          className="-mr-2 p-2 text-bg md:hidden"
         >
           {mobileOpen ? (
             <X aria-hidden="true" strokeWidth={1.5} className="h-6 w-6" />
@@ -157,30 +183,30 @@ export default function Nav() {
       <div
         id="mobile-menu"
         hidden={!mobileOpen}
-        className="border-t border-border bg-bg md:hidden"
+        className="border-t border-accent/25 bg-primary md:hidden"
       >
         <nav aria-label="Main" className="mx-auto max-w-6xl px-5 py-4 sm:px-8">
           <MobileLink to="/">Home</MobileLink>
 
           <Link
             to="/#about"
-            className="block border-b border-border/70 py-3.5 text-[0.95rem] text-text"
+            className="block border-b border-bg/15 py-3.5 text-[0.95rem] text-bg/90"
           >
             About
           </Link>
 
-          <div className="border-b border-border/70">
+          <div className="border-b border-bg/15">
             <button
               type="button"
               aria-expanded={mobileWorkOpen}
               onClick={() => setMobileWorkOpen((open) => !open)}
-              className="flex w-full items-center justify-between py-3.5 text-left text-[0.95rem] text-text"
+              className="flex w-full items-center justify-between py-3.5 text-left text-[0.95rem] text-bg/90"
             >
               Portfolio
               <ChevronDown
                 aria-hidden="true"
                 strokeWidth={1.75}
-                className={`h-4 w-4 text-accent-deep transition-transform duration-200 ${
+                className={`h-4 w-4 text-accent-plum transition-transform duration-200 ${
                   mobileWorkOpen ? 'rotate-180' : ''
                 }`}
               />
@@ -189,7 +215,7 @@ export default function Nav() {
             <div hidden={!mobileWorkOpen} className="pb-3">
               {columns.map(({ key, items }) => (
                 <div key={key} className="mb-3 last:mb-0">
-                  <p className="mb-1.5 text-[0.62rem] uppercase tracking-[0.2em] text-accent-deep">
+                  <p className="mb-1.5 text-[0.62rem] uppercase tracking-[0.2em] text-accent-plum">
                     {kindLabel[key]}
                   </p>
                   <ul>
@@ -197,7 +223,7 @@ export default function Nav() {
                       <li key={project.slug}>
                         <Link
                           to={`/work/${project.slug}`}
-                          className="block py-2 pl-3 text-[0.9rem] text-text/85 border-l border-border"
+                          className="block border-l border-bg/20 py-2 pl-3 text-[0.9rem] text-bg/75"
                         >
                           {project.title}
                         </Link>
@@ -222,8 +248,8 @@ function TopLink({ to, children }) {
       to={to}
       end
       className={({ isActive }) =>
-        `text-sm tracking-wide transition-colors duration-200 hover:text-accent-deep ${
-          isActive ? 'text-accent-deep' : 'text-text'
+        `border-b-[1.5px] pb-1 text-sm tracking-wide transition-colors duration-150 hover:text-accent-plum ${
+          isActive ? 'border-accent text-accent-plum' : 'border-transparent text-bg/90'
         }`
       }
     >
@@ -238,8 +264,8 @@ function MobileLink({ to, children }) {
       to={to}
       end
       className={({ isActive }) =>
-        `block border-b border-border/70 py-3.5 text-[0.95rem] ${
-          isActive ? 'text-accent-deep' : 'text-text'
+        `block border-b border-bg/15 py-3.5 text-[0.95rem] ${
+          isActive ? 'text-accent-plum' : 'text-bg/90'
         }`
       }
     >

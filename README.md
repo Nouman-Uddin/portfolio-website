@@ -155,12 +155,20 @@ One signature moment per page, all of it opt-out under
 
 ## Deploying
 
-It's a static SPA, so the host needs to serve `index.html` for unknown paths or
-a direct hit on `/work/skincare-product-brand` will 404.
+Pushing to `main` builds and publishes the site to GitHub Pages automatically
+(`.github/workflows/deploy.yml`). Pages serves from a subfolder, so the workflow
+builds with `VITE_BASE=/portfolio-website/` and the router picks that up through
+`import.meta.env.BASE_URL`. It also copies `index.html` to `404.html`, because
+Pages has no rewrite rules and a direct hit on `/work/<slug>` would otherwise
+404.
 
+Everywhere else the base stays `/` with no configuration:
+
+- **Vercel** — import the repo; SPA rewrites are automatic for Vite projects.
 - **Netlify** — already handled by `public/_redirects`.
-- **Vercel** — SPA rewrites are automatic for Vite projects.
-- **GitHub Pages / plain static host** — add a rewrite rule, or copy
-  `dist/index.html` to `dist/404.html`.
 
 Build command `npm run build`, publish directory `dist`.
+
+The three films are ~129 MB of the repository. If clones start to feel heavy,
+move them to Git LFS or host them separately and point the `video` entries in
+`src/data/projects.js` at the new URLs.

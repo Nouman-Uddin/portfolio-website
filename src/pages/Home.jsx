@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
-import { ArrowDown, ArrowUpRight } from 'lucide-react'
-import { Media } from '../components/Media'
+import { ArrowDown, ArrowUpRight, ChevronDown, Camera, Code2 } from 'lucide-react'
 import Reveal from '../components/Reveal'
 import WorkGlimpses from '../components/WorkGlimpses'
 import { Section, SectionHeading } from '../components/Section'
@@ -9,6 +8,8 @@ import { useDocumentTitle } from '../hooks/useDocumentTitle'
 
 const approach = [
   {
+    numeral: '01',
+    icon: Camera,
     label: 'Creative AI',
     title: 'Directing a camera that doesn’t exist.',
     body:
@@ -20,10 +21,12 @@ const approach = [
     ],
   },
   {
+    numeral: '02',
+    icon: Code2,
     label: 'Technical AI',
     title: 'Building with AI as the engineering partner.',
     body:
-      'I build the software around the work with Claude AI — marketing sites, web apps and internal tools, taken from information architecture and copy through to a deployed product, usually in days rather than a dev queue’s worth of weeks.',
+      'I build the software around the work with Claude AI — marketing sites, web apps and internal tools, taken from information architecture and copy through to a deployed product, usually in days rather than weeks in a dev queue.',
     points: [
       'Responsive marketing sites and web apps',
       'Python services and API integrations',
@@ -39,6 +42,12 @@ const disciplines = [
   'Workflow automation',
 ]
 
+const stats = [
+  { figure: '3 yrs', caption: 'directing AI work' },
+  { figure: '5', caption: 'projects shipped' },
+  { figure: 'MBA', caption: 'magna cum laude' },
+]
+
 export default function Home() {
   useDocumentTitle(
     null,
@@ -47,63 +56,70 @@ export default function Home() {
 
   return (
     <>
-      {/* ---------- Hero ---------- */}
-      <Section className="relative !pt-16 md:!pt-24">
+      {/* ---------- Hero: the portrait carries the whole section ---------- */}
+      <section className="grain relative isolate flex min-h-[86vh] items-center overflow-hidden">
+        <img
+          src="/images/hero.jpg"
+          alt="Mohammad Nouman-Ud-din"
+          className="absolute inset-0 h-full w-full object-cover"
+          style={{ objectPosition: '64% 18%' }}
+        />
+        {/* Directional scrim: solid under the text, gone by the time it reaches
+            the detail in the photograph. */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 top-0 h-[34rem] bg-[radial-gradient(58%_55%_at_72%_18%,rgba(192,138,78,0.16),transparent_72%)]"
+          className="absolute inset-0"
+          style={{ background: 'linear-gradient(100deg, rgba(74,37,69,0.95) 0%, rgba(74,37,69,0.75) 35%, rgba(74,37,69,0.25) 65%, rgba(74,37,69,0) 85%)' }}
         />
-        <div className="relative grid items-center gap-12 md:grid-cols-[1.15fr_0.85fr] md:gap-16">
-          <div>
-            <Reveal as="p" className="text-[0.63rem] uppercase tracking-[0.24em] text-accent-deep">
-              AI Creative Technologist
-            </Reveal>
+        {/* Narrow screens have no room for the diagonal to do its work. */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/45 to-primary/15 md:hidden"
+        />
 
-            <Reveal
-              as="h1"
-              delay={80}
-              className="mt-6 font-serif text-[2.6rem] leading-[1.05] sm:text-[3.4rem] md:text-[4rem]"
-            >
-              Mohammad
-              <br />
-              Nouman-Ud-din
-            </Reveal>
+        <div className="relative mx-auto w-full max-w-6xl px-5 py-28 sm:px-8 md:py-36">
+          <Reveal as="p" className="text-[0.63rem] uppercase tracking-[0.24em] text-accent-plum">
+            AI Creative Technologist
+          </Reveal>
 
-            <Reveal
-              as="p"
-              delay={160}
-              className="mt-7 max-w-[34ch] text-[1.1rem] leading-relaxed text-text/85 md:text-[1.25rem]"
-            >
-              I use AI to create branded content — and build the tools that bring it to life.
-            </Reveal>
+          <Reveal
+            as="h1"
+            delay={80}
+            className="mt-6 font-serif text-[2.35rem] leading-[1.06] text-bg [overflow-wrap:normal] sm:max-w-[14ch] sm:text-[3.6rem] md:text-[4.4rem]"
+          >
+            Mohammad
+            <br />
+            Nouman-Ud-din
+          </Reveal>
 
-            <Reveal delay={240} className="mt-10">
-              <Pill href="#work" icon={ArrowDown}>
-                See the work
-              </Pill>
-            </Reveal>
-          </div>
+          <Reveal
+            as="p"
+            delay={160}
+            className="mt-7 max-w-[36ch] text-[1.1rem] leading-relaxed text-bg/85 md:text-[1.3rem]"
+          >
+            I use AI to create <em className="font-serif text-bg">branded</em> content — and build
+            the tools that bring it to life.
+          </Reveal>
 
-          <Reveal delay={120} className="md:justify-self-end">
-            <div className="relative mx-auto w-full max-w-[22rem] md:mx-0">
-              <span
-                aria-hidden="true"
-                className="absolute -inset-3 -rotate-2 rounded-[2.4rem] border border-accent/35"
-              />
-              <span
-                aria-hidden="true"
-                className="absolute -right-8 -top-8 h-28 w-28 rounded-full bg-accent-light/25 blur-3xl"
-              />
-              <Media
-                src="/images/hero.jpg"
-                alt="Portrait of Mohammad Nouman-Ud-din"
-                sizeHint="Portrait"
-                className="relative aspect-[4/5] w-full rounded-[2rem] border border-border shadow-[0_28px_60px_-34px_rgba(43,36,32,0.55)]"
-              />
-            </div>
+          <Reveal delay={240} className="mt-10 flex flex-wrap items-center gap-4">
+            <Pill href="#work" icon={ArrowDown}>
+              See the work
+            </Pill>
+            <span className="inline-flex items-center gap-2.5 rounded-full border border-bg/25 bg-bg/95 px-4 py-2 text-[0.65rem] uppercase tracking-[0.18em] text-primary">
+              <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-accent-deep" />
+              Available for freelance work
+            </span>
           </Reveal>
         </div>
-      </Section>
+
+        <a
+          href="#about"
+          aria-label="Scroll to About"
+          className="absolute bottom-7 left-1/2 hidden -translate-x-1/2 text-bg/65 transition-colors duration-200 hover:text-bg sm:block"
+        >
+          <ChevronDown aria-hidden="true" strokeWidth={1.5} className="bob h-6 w-6" />
+        </a>
+      </section>
 
       {/* ---------- About ---------- */}
       <Section id="about" className="scroll-mt-24">
@@ -118,36 +134,55 @@ export default function Home() {
             <Reveal
               key={item.title}
               delay={index * 80}
-              className="h-full rounded-lg border border-border bg-surface p-8 transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-[0_20px_44px_-30px_rgba(43,36,32,0.55)] md:p-10"
+              className="relative h-full overflow-hidden rounded-[var(--radius-md)] border border-border border-t-2 border-t-accent bg-surface p-8 transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-[0_24px_50px_-32px_rgba(43,36,32,0.55)] md:p-10"
             >
-              <p className="text-[0.6rem] uppercase tracking-[0.2em] text-accent-deep">
-                {item.label}
-              </p>
-              <h3 className="mt-4 font-serif text-[1.5rem] leading-snug md:text-[1.7rem]">
-                {item.title}
-              </h3>
-              <p className="mt-5 text-[0.98rem] leading-[1.7] text-text/80">{item.body}</p>
-              <ul className="mt-6 space-y-2">
-                {item.points.map((point) => (
-                  <li key={point} className="flex gap-3 text-[0.88rem] text-text/70">
-                    <span
-                      aria-hidden="true"
-                      className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent"
-                    />
-                    {point}
-                  </li>
-                ))}
-              </ul>
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute -top-6 right-3 select-none font-serif text-[8.5rem] leading-none text-primary/[0.07] md:text-[10rem]"
+              >
+                {item.numeral}
+              </span>
+
+              <div className="relative">
+                <item.icon aria-hidden="true" strokeWidth={1.5} className="h-6 w-6 text-accent-deep" />
+                <p className="mt-4 text-[0.6rem] uppercase tracking-[0.2em] text-accent-deep">
+                  {item.label}
+                </p>
+                <h3 className="mt-3 font-serif text-[1.5rem] leading-snug md:text-[1.7rem]">
+                  {item.title}
+                </h3>
+                <p className="mt-5 text-[0.98rem] leading-[1.7] text-text/80">{item.body}</p>
+                <ul className="mt-6 space-y-2">
+                  {item.points.map((point) => (
+                    <li key={point} className="flex gap-3 text-[0.88rem] text-text/70">
+                      <span aria-hidden="true" className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" />
+                      {point}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </Reveal>
           ))}
         </div>
       </Section>
 
       {/* ---------- Background ---------- */}
-      <div className="border-y border-border bg-surface/70">
+      <div className="border-y border-border bg-bg-deep">
         <Section className="md:!py-24">
           <div className="grid gap-10 md:grid-cols-[0.8fr_1.2fr] md:gap-16">
-            <SectionHeading eyebrow="Background" title="Creative first, technical throughout." />
+            <div className="relative">
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute -left-6 -top-20 select-none font-serif text-[14rem] leading-none text-primary/[0.06] md:-top-24 md:text-[18rem]"
+              >
+                N
+              </span>
+              <SectionHeading
+                className="relative"
+                eyebrow="Background"
+                title="Creative first, technical throughout."
+              />
+            </div>
 
             <Reveal delay={120}>
               <p className="text-[1.05rem] leading-[1.75] text-text/85">
@@ -165,12 +200,28 @@ export default function Home() {
                 {disciplines.map((item) => (
                   <li
                     key={item}
-                    className="rounded-full border border-border bg-bg px-4 py-1.5 text-[0.78rem] tracking-wide text-text/75"
+                    className="rounded-full border border-accent/55 px-4 py-1.5 text-[0.65rem] uppercase tracking-[0.14em] text-accent-deep"
                   >
                     {item}
                   </li>
                 ))}
               </ul>
+
+              <dl className="mt-10 grid grid-cols-3 gap-6 border-t border-border pt-8">
+                {stats.map((stat) => (
+                  <div key={stat.caption}>
+                    <dt className="sr-only">{stat.caption}</dt>
+                    <dd>
+                      <span className="block font-serif text-[1.9rem] leading-none text-primary md:text-[2.4rem]">
+                        {stat.figure}
+                      </span>
+                      <span className="mt-2 block text-[0.68rem] uppercase tracking-[0.16em] text-accent-deep">
+                        {stat.caption}
+                      </span>
+                    </dd>
+                  </div>
+                ))}
+              </dl>
             </Reveal>
           </div>
         </Section>
@@ -187,9 +238,9 @@ export default function Home() {
           <Reveal delay={120}>
             <Link
               to="/work/skincare-product-brand"
-              className="link-underline inline-flex items-center gap-1.5 text-sm text-accent-deep"
+              className="nudge group inline-flex items-center gap-1.5 text-sm text-accent-deep"
             >
-              Start with the skincare brand
+              <span className="underline-grow">Start with the skincare brand</span>
               <ArrowUpRight aria-hidden="true" strokeWidth={1.75} className="h-4 w-4" />
             </Link>
           </Reveal>

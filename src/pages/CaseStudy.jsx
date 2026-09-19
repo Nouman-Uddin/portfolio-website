@@ -54,7 +54,7 @@ export default function CaseStudy() {
         <Reveal>
           <Link
             to="/#work"
-            className="inline-flex items-center gap-2 text-[0.8rem] text-text/60 transition-colors duration-200 hover:text-accent-deep"
+            className="nudge-back inline-flex items-center gap-2 text-[0.8rem] text-text/60 transition-colors duration-200 hover:text-accent-deep"
           >
             <ArrowLeft aria-hidden="true" strokeWidth={1.75} className="h-3.5 w-3.5" />
             All work
@@ -100,7 +100,7 @@ export default function CaseStudy() {
             src={project.hero.src}
             alt={project.hero.alt}
             sizeHint={project.hero.ratio === 'tall' ? 'Portrait' : 'Landscape'}
-            className={`w-full rounded-lg border border-border shadow-[0_30px_70px_-45px_rgba(43,36,32,0.6)] ${heroClass}`}
+            className={`w-full rounded-[var(--radius-lg)] border border-border shadow-[0_30px_70px_-45px_rgba(43,36,32,0.6)] ${heroClass}`}
           />
         </Reveal>
       </div>
@@ -162,7 +162,7 @@ export default function CaseStudy() {
                 View it live
               </Pill>
             ) : project.liveKey ? (
-              <p className="mt-7 rounded-md border border-dashed border-accent/40 px-4 py-3 text-[0.78rem] text-text/60">
+              <p className="mt-7 rounded-[var(--radius-sm)] border border-dashed border-accent/40 px-4 py-3 text-[0.78rem] text-text/60">
                 Live link to be added — set <code className="font-mono">{project.liveKey}</code> in{' '}
                 <code className="font-mono">src/data/links.js</code>.
               </p>
@@ -173,7 +173,7 @@ export default function CaseStudy() {
 
       {/* ---------- Key features (technical) ---------- */}
       {project.features ? (
-        <div className="border-y border-border bg-surface/70">
+        <div className="border-y border-border bg-bg-deep">
           <Section className="md:!py-24">
             <Reveal as="h2" className="font-serif text-[1.75rem] md:text-[2.2rem]">
               Key features
@@ -228,7 +228,7 @@ export default function CaseStudy() {
                 src={project.video.src}
                 poster={project.video.poster}
                 alt={project.video.alt}
-                className="aspect-video w-full rounded-lg border border-border"
+                className="aspect-video w-full rounded-[var(--radius-md)] border border-border"
               />
             </Reveal>
           ) : null}
@@ -241,7 +241,7 @@ export default function CaseStudy() {
                     type="button"
                     onClick={() => open(index)}
                     aria-label={`View larger: ${item.alt}`}
-                    className="group relative block w-full cursor-zoom-in overflow-hidden rounded-md border border-border transition-all duration-200 ease-out hover:-translate-y-1 hover:border-accent/50 hover:shadow-[0_22px_46px_-26px_rgba(43,36,32,0.65)]"
+                    className="group relative block w-full cursor-zoom-in overflow-hidden rounded-[var(--radius-sm)] border border-border transition-all duration-200 ease-out hover:-translate-y-1 hover:border-accent/50 hover:shadow-[0_22px_46px_-26px_rgba(43,36,32,0.65)]"
                   >
                     <Media
                       src={item.src}
@@ -270,7 +270,7 @@ export default function CaseStudy() {
 
       {/* ---------- Reference sheets ---------- */}
       {project.referenceSheets ? (
-        <div className="border-y border-border bg-surface/70">
+        <div className="border-y border-border bg-bg-deep">
           <Section className="md:!py-24">
             <Reveal as="h2" className="font-serif text-[1.75rem] md:text-[2.2rem]">
               Reference sheets
@@ -293,14 +293,14 @@ export default function CaseStudy() {
                     type="button"
                     onClick={() => open((project.gallery?.length ?? 0) + index)}
                     aria-label={`View larger: ${sheet.alt}`}
-                    className="mt-5 block w-full cursor-zoom-in rounded-md border border-border bg-bg transition-all duration-200 hover:border-accent/50 hover:shadow-[0_22px_46px_-30px_rgba(43,36,32,0.6)]"
+                    className="mt-5 block w-full cursor-zoom-in rounded-[var(--radius-sm)] border border-border bg-bg transition-all duration-200 hover:border-accent/50 hover:shadow-[0_22px_46px_-30px_rgba(43,36,32,0.6)]"
                   >
                     <Media
                       src={sheet.src}
                       alt={sheet.alt}
                       sizeHint="Sheet"
                       fit="contain"
-                      className={`w-full rounded-md ${sheetAspect[sheet.ratio] ?? sheetAspect['16/9']}`}
+                      className={`w-full rounded-[var(--radius-sm)] ${sheetAspect[sheet.ratio] ?? sheetAspect['16/9']}`}
                     />
                   </button>
                 </Reveal>
@@ -315,7 +315,7 @@ export default function CaseStudy() {
         <div className="border-t border-border">
           <Section className="md:!py-20">
             <Reveal>
-              <Link to={`/work/${next.slug}`} className="group flex flex-col gap-4">
+              <Link to={`/work/${next.slug}`} className="nudge group flex flex-col gap-4">
                 <span className="text-[0.63rem] uppercase tracking-[0.22em] text-accent-deep">
                   Next project — {kindLabel[next.kind]}
                 </span>
@@ -324,7 +324,7 @@ export default function CaseStudy() {
                   <ArrowRight
                     aria-hidden="true"
                     strokeWidth={1.25}
-                    className="h-7 w-7 shrink-0 transition-transform duration-200 group-hover:translate-x-1.5 md:h-9 md:w-9"
+                    className="h-7 w-7 shrink-0 md:h-9 md:w-9"
                   />
                 </span>
               </Link>
@@ -345,7 +345,7 @@ function BeforeAfterPane({ src, alt, label, emphasised = false }) {
         src={src}
         alt={alt}
         sizeHint="Square"
-        className={`aspect-square w-full rounded-md border ${
+        className={`aspect-square w-full rounded-[var(--radius-sm)] border ${
           emphasised ? 'border-accent/60 shadow-[0_20px_44px_-28px_rgba(43,36,32,0.6)]' : 'border-border'
         }`}
       />
