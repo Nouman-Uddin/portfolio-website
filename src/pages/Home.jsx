@@ -56,66 +56,72 @@ export default function Home() {
 
   return (
     <>
-      {/* ---------- Hero: the portrait carries the whole section ---------- */}
-      <section className="grain relative isolate flex min-h-[86vh] items-center overflow-hidden">
+      {/* ---------- Hero ----------
+          Three layers, in this order: the backdrop (which carries the white
+          panel, baked in so it can never drift out of register with the head),
+          then the subject cut out of that same frame, then the type. The
+          cutout's drop-shadow falls on the panel, which is what makes him read
+          as a layer in front of it rather than pasted onto it. */}
+      <section className="grain relative isolate flex min-h-[92vh] flex-col overflow-hidden bg-[#1A0E1F]">
         <img
           src="/images/hero.jpg"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 h-full w-full object-cover object-center"
+        />
+        <img
+          src="/images/hero-subject.png"
           alt="Mohammad Nouman-Ud-din"
-          className="absolute inset-0 h-full w-full object-cover"
-          style={{ objectPosition: '64% 18%' }}
+          className="absolute inset-0 h-full w-full object-cover object-center"
+          style={{ filter: 'drop-shadow(-10px 14px 22px rgba(12,5,16,0.55))' }}
         />
-        {/* Directional scrim: solid under the text, gone by the time it reaches
-            the detail in the photograph. */}
+        {/* Narrow screens crop most of the backdrop away, so the type needs its
+            own ground to sit on. */}
         <div
           aria-hidden="true"
-          className="absolute inset-0"
-          style={{ background: 'linear-gradient(100deg, rgba(74,37,69,0.95) 0%, rgba(74,37,69,0.75) 35%, rgba(74,37,69,0.25) 65%, rgba(74,37,69,0) 85%)' }}
-        />
-        {/* Narrow screens have no room for the diagonal to do its work. */}
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/45 to-primary/15 md:hidden"
+          className="absolute inset-0 bg-[#1A0E1F]/70 md:hidden"
         />
 
-        <div className="relative mx-auto w-full max-w-6xl px-5 py-28 sm:px-8 md:py-36">
-          <Reveal as="p" className="text-[0.78rem] uppercase tracking-[0.24em] text-accent-plum md:text-[0.88rem]">
-            AI Creative Technologist
-          </Reveal>
+        <div className="relative mx-auto flex w-full max-w-6xl flex-1 flex-col px-5 pb-10 pt-28 sm:px-8 md:pb-14 md:pt-36">
+          <div className="flex flex-1 flex-col justify-center gap-10 md:flex-row md:items-center md:justify-between md:gap-16">
+            <Reveal as="h1" className="max-w-[9ch] font-serif text-[3rem] leading-[0.98] sm:text-[4.2rem] md:text-[5.4rem] lg:text-[6.2rem]">
+              <span className="hero-name">Mohammad Nouman-Ud-din</span>
+            </Reveal>
 
-          <Reveal
-            as="h1"
-            delay={80}
-            className="mt-6 font-serif text-[2.35rem] leading-[1.06] text-bg [overflow-wrap:normal] sm:max-w-[14ch] sm:text-[3.6rem] md:text-[4.4rem]"
-          >
-            Mohammad
-            <br />
-            Nouman-Ud-din
+            <Reveal
+              as="p"
+              delay={140}
+              className="max-w-[30ch] text-[0.95rem] leading-relaxed text-white/85 md:mt-24 md:max-w-[26ch] md:text-[1rem]"
+            >
+              I use AI to create branded content — polished enough to hold up as a real
+              campaign.
+            </Reveal>
+          </div>
+
+          <Reveal delay={220} className="mt-10 flex flex-wrap items-center gap-4 md:mt-0">
+            <Pill href="#work" icon={ArrowDown}>
+              See the work
+            </Pill>
+            <span className="inline-flex items-center gap-2.5 rounded-full border border-white/25 bg-white/10 px-4 py-2 text-[0.65rem] uppercase tracking-[0.18em] text-white backdrop-blur-md">
+              <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-[#F2C6D9]" />
+              Available for freelance work
+            </span>
           </Reveal>
 
           <Reveal
             as="p"
-            delay={160}
-            className="mt-7 max-w-[36ch] text-[1.1rem] leading-relaxed text-bg/85 md:text-[1.3rem]"
+            delay={300}
+            className="mt-10 font-serif text-[1.9rem] uppercase leading-none tracking-[0.06em] sm:text-[2.6rem] md:mt-12 md:text-[3.4rem]"
           >
-            I use AI to create <em className="font-serif text-bg">branded</em> content — and build
-            the tools that bring it to life.
-          </Reveal>
-
-          <Reveal delay={240} className="mt-10 flex flex-wrap items-center gap-4">
-            <Pill href="#work" icon={ArrowDown}>
-              See the work
-            </Pill>
-            <span className="inline-flex items-center gap-2.5 rounded-full border border-bg/25 bg-bg/95 px-4 py-2 text-[0.65rem] uppercase tracking-[0.18em] text-primary">
-              <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-accent-deep" />
-              Available for freelance work
-            </span>
+            <span className="text-white">AI Creative </span>
+            <span className="text-[#F2C6D9]">Technologist</span>
           </Reveal>
         </div>
 
         <a
           href="#about"
           aria-label="Scroll to About"
-          className="absolute bottom-7 left-1/2 hidden -translate-x-1/2 text-bg/65 transition-colors duration-200 hover:text-bg sm:block"
+          className="absolute bottom-7 right-6 hidden text-white/60 transition-colors duration-200 hover:text-white sm:block"
         >
           <ChevronDown aria-hidden="true" strokeWidth={1.5} className="bob h-6 w-6" />
         </a>

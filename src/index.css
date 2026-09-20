@@ -130,6 +130,24 @@
     animation: page-in 420ms var(--ease-out-soft) both;
   }
 
+  /* The name emerges out of the photograph's own shadow and resolves into
+     light. Gradient-clipped, so it needs a transparent fill. */
+  .hero-name {
+    /* Narrow screens crop straight to the face, so the near-black end of the
+       gradient would land on the photograph and disappear. Below md the ramp
+       starts light instead. */
+    background-image: linear-gradient(90deg, #c9a7d4 0%, #ffffff 45%, #f2c6d9 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  @media (min-width: 768px) {
+    .hero-name {
+      background-image: linear-gradient(90deg, #1a0e1f 0%, #ffffff 55%, #f2c6d9 100%);
+    }
+  }
+
   .link-underline {
     background-image: linear-gradient(currentColor, currentColor);
     background-position: 0 100%;

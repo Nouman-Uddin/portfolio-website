@@ -68,20 +68,34 @@ export default function Nav() {
   }, [])
 
   const isWorkPath = pathname.startsWith('/work/')
+  // The glass bar only works where there is a dark photograph behind it. Every
+  // other route is cream, so white-on-glass would vanish there.
+  const overHero = pathname === '/'
+  const label = overHero ? 'text-white/85' : 'text-primary'
+  const labelActive = overHero ? 'text-white' : 'text-accent-deep'
+  const rule = overHero ? 'border-white/70' : 'border-accent'
 
   return (
     <header
-      className={`sticky top-0 z-50 border-b border-accent/40 transition-all duration-300 ${
-        scrolled
-          ? 'bg-bg/90 shadow-[0_10px_30px_-20px_rgba(43,36,32,0.55)] backdrop-blur-xl'
-          : 'bg-bg'
-      }`}
+      className={
+        overHero
+          ? `fixed inset-x-0 top-0 z-50 border-b border-white/15 bg-white/10 backdrop-blur-[16px] backdrop-saturate-150 transition-shadow duration-300 ${
+              scrolled ? 'shadow-[0_10px_34px_-22px_rgba(12,5,16,0.9)]' : ''
+            }`
+          : `sticky top-0 z-50 border-b border-accent/40 transition-all duration-300 ${
+              scrolled
+                ? 'bg-bg/90 shadow-[0_10px_30px_-20px_rgba(43,36,32,0.55)] backdrop-blur-xl'
+                : 'bg-bg'
+            }`
+      }
     >
       <div className="mx-auto flex h-[4.5rem] max-w-6xl items-center justify-between gap-6 px-5 sm:px-8 md:h-[5.25rem]">
         <Link
           to="/"
           aria-label="Mohammad Nouman-Ud-din — home"
-          className="flex flex-col justify-center rounded-full bg-primary px-5 py-2 leading-tight transition-colors duration-200 hover:bg-[#5a2e54] sm:px-6"
+          className={`flex flex-col justify-center rounded-full bg-primary px-5 py-2 leading-tight transition-colors duration-200 hover:bg-[#5a2e54] sm:px-6 ${
+            overHero ? 'sr-only' : ''
+          }`}
         >
           <span className="font-serif text-[0.95rem] text-bg md:text-[1.05rem]">
             Mohammad Nouman-Ud-din
@@ -93,11 +107,13 @@ export default function Nav() {
 
         {/* ---------- Desktop ---------- */}
         <nav aria-label="Main" className="hidden items-center gap-9 md:flex">
-          <TopLink to="/">Home</TopLink>
+          <TopLink to="/" tone={{ label, labelActive, rule }}>
+            Home
+          </TopLink>
 
           <Link
             to="/#about"
-            className="border-b-[1.5px] border-transparent pb-1 text-sm tracking-wide text-primary transition-colors duration-150 hover:text-accent-deep"
+            className={`border-b-[1.5px] border-transparent pb-1 text-sm tracking-wide transition-colors duration-150 ${label}`}
           >
             About
           </Link>
@@ -113,8 +129,8 @@ export default function Nav() {
               aria-expanded={dropdownOpen}
               aria-haspopup="true"
               onClick={() => setDropdownOpen((open) => (canHover ? true : !open))}
-              className={`flex items-center gap-1.5 border-b-[1.5px] pb-1 text-sm tracking-wide transition-colors duration-150 hover:text-accent-deep ${
-                isWorkPath ? 'border-accent text-accent-deep' : 'border-transparent text-primary'
+              className={`flex items-center gap-1.5 border-b-[1.5px] pb-1 text-sm tracking-wide transition-colors duration-150 ${
+                isWorkPath ? `${rule} ${labelActive}` : `border-transparent ${label}`
               }`}
             >
               Portfolio
@@ -159,7 +175,9 @@ export default function Nav() {
             </div>
           </div>
 
-          <TopLink to="/contact">Contact</TopLink>
+          <TopLink to="/contact" tone={{ label, labelActive, rule }}>
+            Contact
+          </TopLink>
         </nav>
 
         {/* ---------- Mobile trigger ---------- */}
@@ -169,7 +187,7 @@ export default function Nav() {
           aria-controls="mobile-menu"
           aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
           onClick={() => setMobileOpen((open) => !open)}
-          className="-mr-2 p-2 text-primary md:hidden"
+          className={`-mr-2 p-2 md:hidden ${overHero ? 'text-white' : 'text-primary'}`}
         >
           {mobileOpen ? (
             <X aria-hidden="true" strokeWidth={1.5} className="h-6 w-6" />
@@ -183,7 +201,7 @@ export default function Nav() {
       <div
         id="mobile-menu"
         hidden={!mobileOpen}
-        className="border-t border-border bg-bg md:hidden"
+        className="border-t border-border bg-bg shadow-[0_18px_40px_-26px_rgba(43,36,32,0.6)] md:hidden"
       >
         <nav aria-label="Main" className="mx-auto max-w-6xl px-5 py-4 sm:px-8">
           <MobileLink to="/">Home</MobileLink>
@@ -242,14 +260,14 @@ export default function Nav() {
   )
 }
 
-function TopLink({ to, children }) {
+function TopLink({ to, children, tone }) {
   return (
     <NavLink
       to={to}
       end
       className={({ isActive }) =>
-        `border-b-[1.5px] pb-1 text-sm tracking-wide transition-colors duration-150 hover:text-accent-deep ${
-          isActive ? 'border-accent text-accent-deep' : 'border-transparent text-primary'
+        `border-b-[1.5px] pb-1 text-sm tracking-wide transition-colors duration-150 ${
+          isActive ? `${tone.rule} ${tone.labelActive}` : `border-transparent ${tone.label}`
         }`
       }
     >
