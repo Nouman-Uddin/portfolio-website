@@ -8,3 +8,14 @@ createRoot(document.getElementById('root')).render(
     <App />
   </StrictMode>,
 )
+
+// Two frames guarantees React has committed and painted before the boot shell
+// goes, so there is no gap between the two.
+requestAnimationFrame(() => {
+  requestAnimationFrame(() => {
+    const boot = document.getElementById('boot')
+    if (!boot) return
+    boot.style.opacity = '0'
+    setTimeout(() => boot.remove(), 300)
+  })
+})

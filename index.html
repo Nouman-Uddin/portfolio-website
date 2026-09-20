@@ -12,12 +12,66 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      rel="preload"
+      as="style"
       href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..700&family=Inter:wght@300..600&display=swap"
-      rel="stylesheet"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..700&family=Inter:wght@300..600&display=swap"
+      />
+    </noscript>
   </head>
   <body>
     <div id="root"></div>
+
+    <!-- Painted before the bundle parses, so the first frame is the site's own
+         ground rather than a blank white page. main.jsx fades it out once React
+         has committed its first real paint. -->
+    <div id="boot">
+      <span id="boot-mark">Mohammad Nouman-Ud-Din</span>
+    </div>
+    <style>
+      #boot {
+        position: fixed;
+        inset: 0;
+        z-index: 40;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #ffffff;
+        transition: opacity 260ms ease;
+      }
+      #boot-mark {
+        font-family: Fraunces, Georgia, "Times New Roman", serif;
+        font-size: 1.05rem;
+        letter-spacing: 0.02em;
+        color: #4a2545;
+        opacity: 0.55;
+      }
+      #boot[data-home='true'] {
+        background: #1a0e1f;
+      }
+      #boot[data-home='true'] #boot-mark {
+        color: #f2c6d9;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        #boot {
+          transition: none;
+        }
+      }
+    </style>
+    <script>
+      // The home route opens on the dark hero and every other route on white,
+      // so the shell has to match or it just trades one flash for another.
+      (function () {
+        var p = location.pathname.replace(/\/+$/, '')
+        document.getElementById('boot').dataset.home = String(p === '' )
+      })()
+    </script>
+
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
