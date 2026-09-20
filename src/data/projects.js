@@ -10,6 +10,7 @@ export const projects = [
   {
     slug: 'skincare-product-brand',
     kind: 'creative',
+    preview: '/video/preview-skincare.mp4',
     title: 'Skincare product brand',
     tagline: 'AI-generated product photography & a full Instagram brand grid',
     year: '2026',
@@ -90,6 +91,7 @@ export const projects = [
   {
     slug: 'property-walkthrough',
     kind: 'creative',
+    preview: '/video/preview-property.mp4',
     title: 'Property walkthrough',
     tagline: 'A luxury property walkthrough film for Golden Vision Real Estate',
     year: '2026',
@@ -130,6 +132,7 @@ export const projects = [
   {
     slug: 'backpack-campaign',
     kind: 'creative',
+    preview: '/video/preview-backpack.mp4',
     title: 'Backpack campaign',
     tagline: 'Concept product campaign, directed end to end',
     year: '2026',

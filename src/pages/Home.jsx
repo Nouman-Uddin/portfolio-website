@@ -128,40 +128,56 @@ export default function Home() {
       </section>
 
       {/* ---------- About ---------- */}
-      <Section id="about" className="scroll-mt-24">
+      <Section id="about" className="relative scroll-mt-24">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute left-1/2 top-1/4 h-[34rem] w-[34rem] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(139,75,158,0.30),transparent)] blur-3xl md:h-[46rem] md:w-[46rem]"
+        />
         <SectionHeading
           eyebrow="About"
           title="Two kinds of AI work, one practice."
           intro="I work with AI at both ends of a project — the images and film a brand shows the world, and the software sitting behind them."
         />
 
-        <div className="mt-12 grid gap-6 md:mt-16 md:grid-cols-2 md:gap-8">
+        <div className="relative mt-12 grid gap-6 md:mt-16 md:grid-cols-2 md:gap-8">
           {approach.map((item, index) => (
             <Reveal
               key={item.title}
               delay={index * 80}
-              className="relative h-full overflow-hidden rounded-[var(--radius-md)] border border-border border-t-2 border-t-accent bg-surface p-8 transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-[0_24px_50px_-32px_rgba(43,36,32,0.55)] md:p-10"
+              className="group relative h-full overflow-hidden rounded-[var(--radius-md)] border border-border border-t-2 border-t-accent bg-bg p-8 transition-all duration-[250ms] ease-out hover:-translate-y-1 hover:border-primary hover:bg-primary hover:shadow-[0_26px_54px_-30px_rgba(43,36,32,0.6)] md:p-10"
             >
               <span
                 aria-hidden="true"
-                className="pointer-events-none absolute -top-6 right-3 select-none font-serif text-[8.5rem] leading-none text-primary/[0.07] md:text-[10rem]"
+                className="pointer-events-none absolute -top-6 right-3 select-none font-serif text-[8.5rem] leading-none text-primary/[0.07] transition-colors duration-[250ms] group-hover:text-bg/15 md:text-[10rem]"
               >
                 {item.numeral}
               </span>
 
               <div className="relative">
-                <item.icon aria-hidden="true" strokeWidth={1.5} className="h-6 w-6 text-accent-deep" />
-                <p className="mt-4 text-[0.6rem] uppercase tracking-[0.2em] text-accent-deep">
+                <item.icon
+                  aria-hidden="true"
+                  strokeWidth={1.5}
+                  className="h-6 w-6 text-accent-deep transition-colors duration-[250ms] group-hover:text-accent-plum"
+                />
+                <p className="mt-4 text-[0.6rem] uppercase tracking-[0.2em] text-accent-deep transition-colors duration-[250ms] group-hover:text-accent-plum">
                   {item.label}
                 </p>
-                <h3 className="mt-3 font-serif text-[1.5rem] leading-snug md:text-[1.7rem]">
+                <h3 className="mt-3 font-serif text-[1.5rem] leading-snug transition-colors duration-[250ms] group-hover:text-bg md:text-[1.7rem]">
                   {item.title}
                 </h3>
-                <p className="mt-5 text-[0.98rem] leading-[1.7] text-text/80">{item.body}</p>
+                <p className="mt-5 text-[0.98rem] leading-[1.7] text-text/80 transition-colors duration-[250ms] group-hover:text-bg/80">
+                  {item.body}
+                </p>
                 <ul className="mt-6 space-y-2">
                   {item.points.map((point) => (
-                    <li key={point} className="flex gap-3 text-[0.88rem] text-text/70">
-                      <span aria-hidden="true" className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" />
+                    <li
+                      key={point}
+                      className="flex gap-3 text-[0.88rem] text-text/70 transition-colors duration-[250ms] group-hover:text-bg/75"
+                    >
+                      <span
+                        aria-hidden="true"
+                        className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent transition-colors duration-[250ms] group-hover:bg-accent-plum"
+                      />
                       {point}
                     </li>
                   ))}
@@ -186,7 +202,9 @@ export default function Home() {
               <SectionHeading
                 className="relative"
                 eyebrow="Background"
+                eyebrowClassName="!text-[0.8rem] font-medium !tracking-[0.2em]"
                 title="Creative first, technical throughout."
+                titleClassName="heading-gradient md:text-[3rem]"
               />
             </div>
 
@@ -202,11 +220,11 @@ export default function Home() {
                 myself.
               </p>
 
-              <ul className="mt-9 flex flex-wrap gap-x-3 gap-y-2.5">
+              <ul className="mt-9 flex max-w-[30rem] flex-wrap gap-1.5">
                 {disciplines.map((item) => (
                   <li
                     key={item}
-                    className="rounded-full border border-accent/55 px-4 py-1.5 text-[0.65rem] uppercase tracking-[0.14em] text-accent-deep"
+                    className="rounded-full border border-accent/55 px-3 py-1 text-[0.63rem] uppercase tracking-[0.12em] text-accent-deep"
                   >
                     {item}
                   </li>
