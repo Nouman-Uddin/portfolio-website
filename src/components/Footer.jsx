@@ -5,7 +5,7 @@ import Reveal from './Reveal'
 /** Plum, like the nav — the two of them bracket every page. */
 export default function Footer() {
   return (
-    <footer className="mt-24 bg-primary text-bg md:mt-32">
+    <footer className="mt-24 bg-[#1A0E1F] text-bg md:mt-32">
       <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 md:py-20">
         <Reveal className="flex flex-col items-start gap-10 md:flex-row md:items-end md:justify-between">
           <div>
@@ -31,7 +31,7 @@ export default function Footer() {
         </Reveal>
 
         <p className="mt-14 border-t border-bg/15 pt-6 text-xs text-bg/55">
-          © {new Date().getFullYear()} Mohammad Nouman-Ud-din · AI Creative Technologist
+          © {new Date().getFullYear()} Mohammad Nouman-Ud-Din · AI Creative Technologist
         </p>
       </div>
     </footer>

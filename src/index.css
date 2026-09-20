@@ -136,7 +136,7 @@
     /* Narrow screens crop straight to the face, so the near-black end of the
        gradient would land on the photograph and disappear. Below md the ramp
        starts light instead. */
-    background-image: linear-gradient(90deg, #c9a7d4 0%, #ffffff 45%, #f2c6d9 100%);
+    background-image: linear-gradient(90deg, #ffffff 0%, #ffffff 40%, #f2c6d9 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -144,7 +144,7 @@
 
   @media (min-width: 768px) {
     .hero-name {
-      background-image: linear-gradient(90deg, #1a0e1f 0%, #ffffff 55%, #f2c6d9 100%);
+      background-image: linear-gradient(90deg, #f7ecf6 0%, #ffffff 45%, #f2c6d9 100%);
     }
   }
 

@@ -88,19 +88,21 @@ export default function Nav() {
       }
     >
       <div
-        className={`flex h-[4.5rem] items-center justify-between gap-6 md:h-[5.25rem] ${
-          overHero ? 'w-full px-6 md:px-10 lg:px-16' : 'mx-auto w-full max-w-6xl px-5 sm:px-8'
+        className={`flex h-[4.5rem] items-center gap-6 md:h-[5.25rem] ${
+          overHero
+            ? 'w-full justify-end px-6 md:px-10 lg:px-16'
+            : 'mx-auto w-full max-w-6xl justify-between px-5 sm:px-8'
         }`}
       >
         <Link
           to="/"
-          aria-label="Mohammad Nouman-Ud-din — home"
+          aria-label="Mohammad Nouman-Ud-Din — home"
           className={`flex flex-col justify-center rounded-full bg-primary px-5 py-2 leading-tight transition-colors duration-200 hover:bg-[#5a2e54] sm:px-6 ${
             overHero ? 'sr-only' : ''
           }`}
         >
           <span className="font-serif text-[0.95rem] text-bg md:text-[1.05rem]">
-            Mohammad Nouman-Ud-din
+            Mohammad Nouman-Ud-Din
           </span>
           <span className="text-[0.55rem] uppercase tracking-[0.22em] text-bg/70 md:text-[0.6rem]">
             AI Creative Technologist
@@ -153,7 +155,7 @@ export default function Nav() {
             </button>
 
             <div
-              className={`absolute right-0 top-full w-[34rem] pt-4 transition duration-200 ease-out ${
+              className={`absolute right-0 top-full w-[34rem] max-w-[calc(100vw-2rem)] pt-4 transition duration-200 ease-out ${
                 dropdownOpen
                   ? 'visible translate-y-0 opacity-100'
                   : 'invisible -translate-y-1 opacity-0'

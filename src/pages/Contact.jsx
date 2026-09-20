@@ -27,7 +27,7 @@ export default function Contact() {
           delay={80}
           className="mt-6 font-serif text-[2.8rem] leading-[1.06] md:text-[4.2rem]"
         >
-          Say hello.
+          Say Hello.
         </Reveal>
 
         <Reveal as="p" delay={160} className="mx-auto mt-6 max-w-[42ch] text-[1.08rem] text-text/80">

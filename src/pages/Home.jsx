@@ -52,7 +52,7 @@ const stats = [
 export default function Home() {
   useDocumentTitle(
     null,
-    'Mohammad Nouman-Ud-din, AI Creative Technologist. AI-generated branded photography and video, plus the websites, apps and automations that bring it to life.',
+    'Mohammad Nouman-Ud-Din, AI Creative Technologist. AI-generated branded photography and video, plus the websites, apps and automations that bring it to life.',
   )
 
   return (
@@ -66,7 +66,7 @@ export default function Home() {
       <section className="grain relative isolate flex min-h-[92vh] flex-col overflow-hidden bg-[#1A0E1F]">
         <img
           src="/images/hero.jpg"
-          alt="Mohammad Nouman-Ud-din"
+          alt="Mohammad Nouman-Ud-Din"
           className="absolute inset-0 h-full w-full object-cover"
           style={{ objectPosition: '20% center' }}
         />
@@ -85,7 +85,7 @@ export default function Home() {
                 <br />
                 Nouman-
                 <br />
-                Ud-din
+                Ud-Din
               </span>
             </Reveal>
 
@@ -112,7 +112,7 @@ export default function Home() {
           <Reveal
             as="p"
             delay={300}
-            className="mt-10 font-serif text-[1.9rem] uppercase leading-none tracking-[0.06em] sm:text-[2.6rem] md:mt-12 md:text-[3.4rem]"
+            className="mt-10 font-serif text-[2.2rem] uppercase leading-none tracking-[0.06em] sm:text-[3rem] md:mt-12 md:text-[4rem]"
           >
             <span className="text-white">AI Creative </span>
             <span className="text-[#F2C6D9]">Technologist</span>

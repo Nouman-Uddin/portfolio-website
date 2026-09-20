@@ -1,4 +1,4 @@
-# Mohammad Nouman-Ud-din — portfolio
+# Mohammad Nouman-Ud-Din — portfolio
 
 Personal portfolio site. React + Vite + Tailwind CSS, no backend.
 
