@@ -71,17 +71,15 @@ export default function Nav() {
   // The glass bar only works where there is a dark photograph behind it. Every
   // other route is cream, so white-on-glass would vanish there.
   const overHero = pathname === '/'
-  const label = overHero ? 'text-white/85' : 'text-primary'
+  const label = overHero ? 'text-white' : 'text-primary'
   const labelActive = overHero ? 'text-white' : 'text-accent-deep'
-  const rule = overHero ? 'border-white/70' : 'border-accent'
+  const rule = overHero ? 'border-transparent' : 'border-accent'
 
   return (
     <header
       className={
         overHero
-          ? `fixed inset-x-0 top-0 z-50 border-b border-white/15 bg-white/10 backdrop-blur-[16px] backdrop-saturate-150 transition-shadow duration-300 ${
-              scrolled ? 'shadow-[0_10px_34px_-22px_rgba(12,5,16,0.9)]' : ''
-            }`
+          ? 'fixed inset-x-0 top-0 z-50'
           : `sticky top-0 z-50 border-b border-accent/40 transition-all duration-300 ${
               scrolled
                 ? 'bg-bg/90 shadow-[0_10px_30px_-20px_rgba(43,36,32,0.55)] backdrop-blur-xl'
@@ -89,7 +87,11 @@ export default function Nav() {
             }`
       }
     >
-      <div className="mx-auto flex h-[4.5rem] max-w-6xl items-center justify-between gap-6 px-5 sm:px-8 md:h-[5.25rem]">
+      <div
+        className={`flex h-[4.5rem] items-center justify-between gap-6 md:h-[5.25rem] ${
+          overHero ? 'w-full px-6 md:px-10 lg:px-16' : 'mx-auto w-full max-w-6xl px-5 sm:px-8'
+        }`}
+      >
         <Link
           to="/"
           aria-label="Mohammad Nouman-Ud-din — home"
@@ -116,6 +118,13 @@ export default function Nav() {
             className={`border-b-[1.5px] border-transparent pb-1 text-sm tracking-wide transition-colors duration-150 ${label}`}
           >
             About
+          </Link>
+
+          <Link
+            to="/#background"
+            className={`border-b-[1.5px] border-transparent pb-1 text-sm tracking-wide transition-colors duration-150 ${label}`}
+          >
+            Background
           </Link>
 
           <div
@@ -211,6 +220,13 @@ export default function Nav() {
             className="block border-b border-border/70 py-3.5 text-[0.95rem] text-primary"
           >
             About
+          </Link>
+
+          <Link
+            to="/#background"
+            className="block border-b border-border/70 py-3.5 text-[0.95rem] text-primary"
+          >
+            Background
           </Link>
 
           <div className="border-b border-border/70">

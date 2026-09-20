@@ -8,6 +8,7 @@ import { Section } from '../components/Section'
 import Pill from '../components/Pill'
 import Lightbox, { useLightbox } from '../components/Lightbox'
 import ScrollProgress from '../components/ScrollProgress'
+import Glow from '../components/Glow'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
 
 // Reference sheets keep their own proportions — written out in full so the
@@ -64,7 +65,8 @@ export default function CaseStudy() {
     <article>
       <ScrollProgress />
       {/* ---------- Header ---------- */}
-      <Section className="!pb-10 !pt-12 md:!pb-14 md:!pt-16">
+      <Section className="relative overflow-hidden !pb-10 !pt-12 md:!pb-14 md:!pt-16">
+        <Glow className="-top-20" />
         <Reveal>
           <Link
             to="/#work"
@@ -75,7 +77,7 @@ export default function CaseStudy() {
           </Link>
         </Reveal>
 
-        <div className="mt-8 grid gap-8 md:grid-cols-[1.4fr_0.6fr] md:items-end md:gap-16">
+        <div className="relative mt-8 grid gap-8 md:grid-cols-[1.4fr_0.6fr] md:items-end md:gap-16">
           <div>
             <Reveal as="p" className="text-[0.63rem] uppercase tracking-[0.22em] text-accent-deep">
               {kindLabel[project.kind]}

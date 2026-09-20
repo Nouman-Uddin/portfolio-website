@@ -2,7 +2,7 @@
 
 @theme {
   /* ---- Palette (edit here; everything downstream follows) ---- */
-  --color-bg: #f7f3ec;            /* warm cream background */
+  --color-bg: #ffffff;            /* page surface — white everywhere but the hero */
   --color-text: #2b2420;          /* warm charcoal, primary text */
   --color-primary: #4a2545;       /* deep plum — headings, emphasis */
   --color-accent: #a9793e;        /* warm bronze — borders, rules, large display text */
@@ -10,7 +10,7 @@
   --color-accent-light: #c08a4e;  /* lighter gold-bronze — secondary highlights, non-text */
   --color-surface: #ffffff;       /* card backgrounds */
   --color-border: #e4ddd0;        /* hairline borders */
-  --color-bg-deep: #f1eae0;       /* the alternate band — section rhythm, no real colour shift */
+  --color-bg-deep: #f7f5fa;       /* the alternate band — a whisper of violet, not a colour shift */
   --color-accent-plum: #ce9a5e;   /* bronze *text* on plum; the base bronze is only 3.6:1 there */
 
   /* ---- Corner radius: one scale, used everywhere ---- */

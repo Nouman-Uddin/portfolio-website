@@ -18,6 +18,9 @@ export default function Pill({
       'bg-accent-deep text-white hover:bg-primary hover:shadow-[0_10px_24px_-12px_rgba(74,37,69,0.7)]',
     outline:
       'border border-accent/60 text-accent-deep hover:border-primary hover:text-primary hover:shadow-[0_10px_24px_-14px_rgba(43,36,32,0.5)]',
+    // Light orchid on deep plum — both already in the palette, and 6.6:1.
+    orchid:
+      'bg-[#D9A9E8] text-primary hover:bg-[#C78FDA] hover:shadow-[0_12px_28px_-14px_rgba(26,14,31,0.8)]',
   }
 
   return (

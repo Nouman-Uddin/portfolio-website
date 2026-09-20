@@ -4,6 +4,7 @@ import Reveal from '../components/Reveal'
 import WorkGlimpses from '../components/WorkGlimpses'
 import { Section, SectionHeading } from '../components/Section'
 import Pill from '../components/Pill'
+import Glow from '../components/Glow'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
 
 const approach = [
@@ -57,53 +58,53 @@ export default function Home() {
   return (
     <>
       {/* ---------- Hero ----------
-          Three layers, in this order: the backdrop (which carries the white
-          panel, baked in so it can never drift out of register with the head),
-          then the subject cut out of that same frame, then the type. The
-          cutout's drop-shadow falls on the panel, which is what makes him read
-          as a layer in front of it rather than pasted onto it. */}
+          One continuous dark backdrop now: the photo over #1A0E1F, which is the
+          same near-black violet the name gradient starts from, so any area the
+          photo does not cover reads as part of the same wall. The content is
+          full-bleed rather than centred in the page container, so the name
+          stays pinned to the left edge and clear of his face at every width. */}
       <section className="grain relative isolate flex min-h-[92vh] flex-col overflow-hidden bg-[#1A0E1F]">
         <img
           src="/images/hero.jpg"
-          alt=""
-          aria-hidden="true"
-          className="absolute inset-0 h-full w-full object-cover object-center"
-        />
-        <img
-          src="/images/hero-subject.png"
           alt="Mohammad Nouman-Ud-din"
-          className="absolute inset-0 h-full w-full object-cover object-center"
-          style={{ filter: 'drop-shadow(-10px 14px 22px rgba(12,5,16,0.55))' }}
+          className="absolute inset-0 h-full w-full object-cover"
+          style={{ objectPosition: '20% center' }}
         />
-        {/* Narrow screens crop most of the backdrop away, so the type needs its
+        {/* Narrow screens crop straight in on the face, so the type needs its
             own ground to sit on. */}
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 bg-[#1A0E1F]/70 md:hidden"
-        />
+        <div aria-hidden="true" className="absolute inset-0 bg-[#1A0E1F]/70 lg:hidden" />
 
-        <div className="relative mx-auto flex w-full max-w-6xl flex-1 flex-col px-5 pb-10 pt-28 sm:px-8 md:pb-14 md:pt-36">
-          <div className="flex flex-1 flex-col justify-center gap-10 md:flex-row md:items-center md:justify-between md:gap-16">
-            <Reveal as="h1" className="max-w-[9ch] font-serif text-[3rem] leading-[0.98] sm:text-[4.2rem] md:text-[5.4rem] lg:text-[6.2rem]">
-              <span className="hero-name">Mohammad Nouman-Ud-din</span>
+        <div className="relative flex w-full flex-1 flex-col px-6 pb-10 pt-28 md:px-10 md:pb-14 md:pt-36 lg:px-16">
+          <div className="flex flex-1 flex-col justify-center gap-10 lg:flex-row lg:items-center lg:justify-between lg:gap-16">
+            <Reveal
+              as="h1"
+              className="font-serif text-[2.6rem] leading-[0.98] sm:text-[3.4rem] lg:text-[4.2rem] xl:text-[5rem]"
+            >
+              <span className="hero-name">
+                Mohammad
+                <br />
+                Nouman-
+                <br />
+                Ud-din
+              </span>
             </Reveal>
 
             <Reveal
               as="p"
               delay={140}
-              className="max-w-[30ch] text-[0.95rem] leading-relaxed text-white/85 md:mt-24 md:max-w-[26ch] md:text-[1rem]"
+              className="max-w-[34ch] text-[1.05rem] leading-relaxed text-white/85 md:text-[1.2rem] lg:mt-24 lg:max-w-[24ch]"
             >
               I use AI to create branded content — polished enough to hold up as a real
               campaign.
             </Reveal>
           </div>
 
-          <Reveal delay={220} className="mt-10 flex flex-wrap items-center gap-4 md:mt-0">
-            <Pill href="#work" icon={ArrowDown}>
+          <Reveal delay={220} className="mt-10 flex flex-wrap items-center gap-4 lg:mt-0">
+            <Pill href="#work" icon={ArrowDown} variant="orchid">
               See the work
             </Pill>
-            <span className="inline-flex items-center gap-2.5 rounded-full border border-white/25 bg-white/10 px-4 py-2 text-[0.65rem] uppercase tracking-[0.18em] text-white backdrop-blur-md">
-              <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-[#F2C6D9]" />
+            <span className="inline-flex items-center gap-2.5 rounded-full border border-white/25 px-4 py-2 text-[0.65rem] uppercase tracking-[0.18em] text-white">
+              <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-[#D9A9E8]" />
               Available for freelance work
             </span>
           </Reveal>
@@ -128,14 +129,12 @@ export default function Home() {
       </section>
 
       {/* ---------- About ---------- */}
-      <Section id="about" className="relative scroll-mt-24">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute left-1/2 top-1/4 h-[34rem] w-[34rem] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(139,75,158,0.30),transparent)] blur-3xl md:h-[46rem] md:w-[46rem]"
-        />
+      <Section id="about" className="relative scroll-mt-24 overflow-hidden">
+        <Glow />
         <SectionHeading
           eyebrow="About"
           title="Two kinds of AI work, one practice."
+          titleClassName="md:text-[3.2rem]"
           intro="I work with AI at both ends of a project — the images and film a brand shows the world, and the software sitting behind them."
         />
 
@@ -189,8 +188,9 @@ export default function Home() {
       </Section>
 
       {/* ---------- Background ---------- */}
-      <div className="border-y border-border bg-bg-deep">
-        <Section className="md:!py-24">
+      <div id="background" className="relative scroll-mt-24 overflow-hidden border-y border-border bg-bg-deep">
+        <Glow className="top-0" />
+        <Section className="relative md:!py-24">
           <div className="grid gap-10 md:grid-cols-[0.8fr_1.2fr] md:gap-16">
             <div className="relative">
               <span
@@ -204,7 +204,7 @@ export default function Home() {
                 eyebrow="Background"
                 eyebrowClassName="!text-[0.8rem] font-medium !tracking-[0.2em]"
                 title="Creative first, technical throughout."
-                titleClassName="heading-gradient md:text-[3rem]"
+                titleClassName="heading-gradient md:text-[3.4rem]"
               />
             </div>
 

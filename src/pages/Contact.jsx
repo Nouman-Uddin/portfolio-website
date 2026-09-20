@@ -2,6 +2,7 @@ import { Phone, Mail, Linkedin, Instagram } from 'lucide-react'
 import { contact, links } from '../data/links'
 import Reveal from '../components/Reveal'
 import { Section } from '../components/Section'
+import Glow from '../components/Glow'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
 
 const socials = [
@@ -14,8 +15,9 @@ export default function Contact() {
   const visibleSocials = socials.filter((social) => links[social.key])
 
   return (
-    <Section className="!pt-16 md:!pt-24">
-      <div className="mx-auto max-w-3xl text-center">
+    <Section className="relative overflow-hidden !pt-16 md:!pt-24">
+      <Glow />
+      <div className="relative mx-auto max-w-3xl text-center">
         <Reveal as="p" className="text-[0.63rem] uppercase tracking-[0.24em] text-accent-deep">
           Contact
         </Reveal>
@@ -23,7 +25,7 @@ export default function Contact() {
         <Reveal
           as="h1"
           delay={80}
-          className="mt-6 font-serif text-[2.6rem] leading-[1.08] md:text-[3.6rem]"
+          className="mt-6 font-serif text-[2.8rem] leading-[1.06] md:text-[4.2rem]"
         >
           Say hello.
         </Reveal>
