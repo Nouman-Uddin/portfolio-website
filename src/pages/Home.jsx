@@ -210,14 +210,14 @@ export default function Home() {
 
             <Reveal delay={120}>
               <p className="text-[1.05rem] leading-[1.75] text-text/85">
-                I&rsquo;m an MBA graduate (Magna Cum Laude) who uses AI to create branded content and
-                build the tools that bring it to life. Over the past three years I&rsquo;ve directed
-                AI-generated photography and video for real estate — including a luxury property
-                walkthrough for Golden Vision Real Estate — while also building the websites, web
-                apps, and automations that support that work, using Claude and Python. My background
-                in real estate sales and business development gives me a practical, client-facing
-                sense of what actually moves a brand, paired with the technical range to build it
-                myself.
+                I&rsquo;m an MBA graduate (Magna Cum Laude) who creates{' '}
+                <strong className="font-semibold text-primary">AI-driven advertising</strong> and{' '}
+                <strong className="font-semibold text-primary">visual content</strong> from concept
+                to final edit. My portfolio spans concept brands—including a commuter backpack and
+                luxury moisturizer campaigns—and real-world real estate content, including a
+                cinematic property walkthrough for Golden Vision Real Estate. My real estate and
+                business-development background adds a practical understanding of how creative work
+                translates into commercial value.
               </p>
 
               <ul className="mt-9 flex max-w-[30rem] flex-wrap gap-1.5">
