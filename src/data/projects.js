@@ -17,7 +17,7 @@ export const projects = [
     role: 'Product concept · Creative direction · Prompt engineering · Edit',
     glimpse: {
       src: '/images/glimpse-skincare.jpg',
-      alt: 'Close-up of the Shué moisturiser cap against a driftwood branch',
+      alt: 'The Shué moisturiser on stone, driftwood and gold leaf around it',
     },
     hero: {
       src: '/images/case-skincare-hero.jpg',
@@ -139,7 +139,7 @@ export const projects = [
     role: 'Product concept · Creative direction · Prompt engineering · Edit',
     glimpse: {
       src: '/images/glimpse-backpack.jpg',
-      alt: 'Close-up of the backpack worn on the model’s back',
+      alt: 'The backpack worn under the blossom, Mount Fuji and the Shinkansen behind',
     },
     hero: {
       src: '/images/case-backpack-hero.jpg',
