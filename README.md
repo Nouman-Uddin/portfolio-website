@@ -164,7 +164,11 @@ Pages has no rewrite rules and a direct hit on `/work/<slug>` would otherwise
 
 Everywhere else the base stays `/` with no configuration:
 
-- **Vercel** — import the repo; SPA rewrites are automatic for Vite projects.
+- **Vercel** — `vercel.json` rewrites every unmatched path to `index.html`.
+  This is required: the zero-config Vite preset does **not** add an SPA
+  catch-all, so without it every URL except `/` returns a Vercel 404 on a
+  direct load or a refresh. Real files under `/images`, `/video` and
+  `/assets` still win, because static matching runs before rewrites.
 - **Netlify** — already handled by `public/_redirects`.
 
 Build command `npm run build`, publish directory `dist`.
