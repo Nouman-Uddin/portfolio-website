@@ -14,7 +14,7 @@ export default function WorkGlimpses() {
 
   return (
     <div className="space-y-16 md:space-y-20">
-      <Group kind="creative" items={creativeProjects} cols="lg:grid-cols-3" canPreview={canPreview} />
+      <Group kind="creative" items={creativeProjects} cols="lg:grid-cols-2" canPreview={canPreview} />
       <Group kind="technical" items={technicalProjects} cols="md:grid-cols-2" canPreview={canPreview} />
     </div>
   )

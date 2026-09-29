@@ -191,6 +191,72 @@ export const projects = [
         alt: 'Reference sheet of the Japanese railway platform, Shinkansen livery, signage and Mount Fuji backdrop',
       },
     ],
+    next: 'villa-interior-design',
+  },
+
+  {
+    slug: 'villa-interior-design',
+    kind: 'creative',
+    preview: '/video/preview-villa.mp4',
+    title: 'Villa interior design',
+    tagline: 'A concept villa interior, built from three plates and filmed as an ad',
+    year: '2026',
+    role: 'Concept · Creative direction · Prompt engineering · Edit',
+    glimpse: {
+      src: '/images/glimpse-villa.jpg',
+      alt: 'Open-plan villa kitchen and living room with a sculptural red pendant',
+    },
+    hero: {
+      src: '/images/case-villa-hero.jpg',
+      alt: 'The villa interior at dusk, warm light across the island and the living room beyond',
+    },
+    brief:
+      'Directed and produced an AI-generated advertisement for a concept villa interior — establishing the room in three canonical plates, deriving every scene from them, then cutting the result to film.',
+    tools: [
+      { name: 'Google Flow', note: 'image & video generation' },
+      { name: 'CapCut', note: 'edit, pacing & sound' },
+      { name: 'Prompt engineering', note: 'holding one room across every shot' },
+    ],
+    video: {
+      src: '/video/villa-ad.mp4',
+      ratio: 'wide',
+      poster: '/images/poster-villa-ad.jpg',
+      alt: 'The finished villa interior design advertisement',
+    },
+    galleryRatio: 'landscape',
+    gallery: [
+      { src: '/images/case-villa-01.jpg', alt: 'Marble island dressed with coffee and a bowl of cherries' },
+      { src: '/images/case-villa-02.jpg', alt: 'Ceramic vase in a lacquered red niche against wood slats' },
+      { src: '/images/case-villa-03.jpg', alt: 'Living room detail — bouclé sofa, red cushion, canvas above' },
+      { src: '/images/case-villa-04.jpg', alt: 'Kitchen sink detail in marble, brass tap and a basil plant' },
+      { src: '/images/case-villa-05.jpg', alt: 'The sculptural pendant lit against the ceiling' },
+    ],
+    referenceSheets: [
+      {
+        src: '/images/case-villa-ref-master.jpg',
+        ratio: '16/9',
+        label: 'Master plate',
+        caption:
+          'Generated first, and the room’s source of truth. Everything after this was derived from it, which is what keeps the layout, the finishes and the light the same room from shot to shot.',
+        alt: 'The master plate — the full open-plan interior, wide',
+      },
+      {
+        src: '/images/case-villa-ref-canon-b.jpg',
+        ratio: '16/9',
+        label: 'Canon B — the living side',
+        caption:
+          'The second canonical angle, taken from the master plate: sectional, art wall and the glazing behind it.',
+        alt: 'Canonical plate of the living side — sectional sofa, artwork and floor-to-ceiling glazing',
+      },
+      {
+        src: '/images/case-villa-ref-canon-c.jpg',
+        ratio: '16/9',
+        label: 'Canon C — the kitchen side',
+        caption:
+          'The third angle, covering the island, the stools and the cabinetry. With these three fixed, every later scene had somewhere to be generated from.',
+        alt: 'Canonical plate of the kitchen side — marble island, stools and dark cabinetry',
+      },
+    ],
     next: 'skincare-product-brand',
   },
 

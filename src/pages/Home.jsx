@@ -45,7 +45,7 @@ const disciplines = [
 
 const stats = [
   { figure: '3 yrs', caption: 'directing AI work' },
-  { figure: '5', caption: 'projects shipped' },
+  { figure: '6', caption: 'projects shipped' },
   { figure: 'MBA', caption: 'magna cum laude' },
 ]
 
@@ -256,8 +256,8 @@ export default function Home() {
         <div className="mb-16 flex flex-col gap-6 md:mb-20 md:flex-row md:items-end md:justify-between">
           <SectionHeading
             eyebrow="Selected work"
-            title="Five projects, two disciplines."
-            intro="Three campaigns directed with AI, and two web products built end to end."
+            title="Six projects, two disciplines."
+            intro="Four campaigns directed with AI, and two web products built end to end."
           />
           <Reveal delay={120}>
             <Link
