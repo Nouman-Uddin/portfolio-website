@@ -38,6 +38,7 @@ const videoShape = {
 const galleryLayout = {
   portrait: { grid: 'grid-cols-2 md:grid-cols-3', aspect: 'aspect-[4/5]' },
   landscape: { grid: 'grid-cols-1 sm:grid-cols-2', aspect: 'aspect-[3/2]' },
+  wide: { grid: 'grid-cols-1 sm:grid-cols-2', aspect: 'aspect-video' },
 }
 
 export default function CaseStudy() {
@@ -56,9 +57,12 @@ export default function CaseStudy() {
     ...(project.gallery ?? []),
     ...(project.feature ? [project.feature] : []),
     ...(project.referenceSheets ?? []),
+    ...(project.commission?.gallery ?? []),
   ]
   const featureIndex = project.gallery?.length ?? 0
   const sheetsFrom = featureIndex + (project.feature ? 1 : 0)
+  const commissionFrom = sheetsFrom + (project.referenceSheets?.length ?? 0)
+  const commissionLayout = galleryLayout[project.commission?.galleryRatio ?? 'wide']
   const { lightbox, open } = useLightbox(viewerItems)
 
   return (
@@ -357,6 +361,63 @@ export default function CaseStudy() {
             </div>
           </Section>
         </div>
+      ) : null}
+
+      {/* ---------- Commissioned work ---------- */}
+      {project.commission ? (
+        <Section className="md:!py-24">
+          <Reveal>
+            <p className="text-[0.63rem] uppercase tracking-[0.22em] text-accent-deep">
+              {project.commission.label}
+            </p>
+            <h2 className="mt-4 font-serif text-[1.75rem] md:text-[2.4rem]">
+              {project.commission.client}
+            </h2>
+            <p className="mt-5 max-w-[62ch] text-[1.02rem] leading-relaxed text-text/80">
+              {project.commission.intro}
+            </p>
+          </Reveal>
+
+          {project.commission.video ? (
+            <Reveal delay={80} className="mt-10">
+              <MediaVideo
+                src={project.commission.video.src}
+                poster={project.commission.video.poster}
+                alt={project.commission.video.alt}
+                className={`rounded-[var(--radius-md)] border border-border ${
+                  videoShape[project.commission.video.ratio] ?? videoShape.wide
+                }`}
+              />
+            </Reveal>
+          ) : null}
+
+          <div className={`mt-10 grid gap-4 md:gap-6 ${commissionLayout.grid}`}>
+            {project.commission.gallery.map((item, index) => (
+              <Reveal key={item.src} delay={index * 60}>
+                <button
+                  type="button"
+                  onClick={() => open(commissionFrom + index)}
+                  aria-label={`View larger: ${item.alt}`}
+                  className="group relative block w-full cursor-zoom-in overflow-hidden rounded-[var(--radius-sm)] border border-border transition-all duration-200 ease-out hover:-translate-y-1 hover:border-accent/50 hover:shadow-[0_22px_46px_-26px_rgba(43,36,32,0.65)]"
+                >
+                  <Media
+                    src={item.src}
+                    alt={item.alt}
+                    sizeHint="Landscape"
+                    className={`w-full ${commissionLayout.aspect}`}
+                    imgClassName="transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+                  />
+                  <span
+                    aria-hidden="true"
+                    className="pointer-events-none absolute bottom-3 right-3 flex h-8 w-8 translate-y-1 items-center justify-center rounded-full bg-bg/90 text-accent-deep opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100"
+                  >
+                    <Expand strokeWidth={1.75} className="h-3.5 w-3.5" />
+                  </span>
+                </button>
+              </Reveal>
+            ))}
+          </div>
+        </Section>
       ) : null}
 
       {/* ---------- Next project ---------- */}
